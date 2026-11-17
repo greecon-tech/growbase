@@ -57,7 +57,7 @@
     nav.addEventListener('click', (e) => {
       if (e.target.closest('a')) setOpen(false);
     });
-    window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => {
+    window.matchMedia('(min-width: 1101px)').addEventListener('change', (e) => {
       if (e.matches) setOpen(false);
     });
   }
