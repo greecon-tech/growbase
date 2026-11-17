@@ -1,0 +1,15 @@
+{
+  "name": "growbase-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bilingual (English / Albanian) marketing website for Grow Base — zero-dependency static site generator, deployed on Netlify.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/build.mjs && node scripts/check.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}

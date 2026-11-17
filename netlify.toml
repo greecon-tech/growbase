@@ -1,0 +1,12 @@
+# Netlify build configuration for growbase.agency
+# Build output is plain static HTML/CSS/JS in ./dist (no framework, no runtime dependencies).
+
+[build]
+  command = "node scripts/build.mjs && node scripts/check.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Headers (CSP, caching) and redirects are generated into dist/_headers and dist/_redirects by the build,
+# because the CSP contains a hash that depends on the built HTML.
