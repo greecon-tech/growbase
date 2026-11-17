@@ -88,9 +88,10 @@ function header(ctx, page) {
     <nav class="nav" id="site-nav" aria-label="${esc(t.ui.primaryNav)}" data-nav>
       <ul class="nav__list">${links}</ul>
       <a class="btn btn--primary nav__cta" href="${ctx.href('contact')}">${esc(t.ui.cta)}${icon('arrow', 'i btn__i')}</a>
+      <div class="lang lang--menu" role="group" aria-label="${esc(t.ui.languageNav)}">${switcher}</div>
     </nav>
     <div class="header__tools">
-      <div class="lang" role="group" aria-label="${esc(t.ui.languageNav)}">${switcher}</div>
+      <div class="lang lang--bar" role="group" aria-label="${esc(t.ui.languageNav)}">${switcher}</div>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-btn data-label-open="${esc(t.ui.menu)}" data-label-close="${esc(t.ui.closeMenu)}">
         <span class="sr">${esc(t.ui.menu)}</span><span class="menu-btn__bars" aria-hidden="true"></span>
       </button>
