@@ -90,7 +90,6 @@ export default {
         alt: 'Pikturë me bojë vaji e një porti me diellin e ulët mbi ujin e qetë: një anije e lartë pranë një kulle prej guri, varka me rrema që ngarkojnë mallra, një pallat dhe kolona antike që e rrethojnë skenën.',
         caption: '*Porti me nisjen e Mbretëreshës së Shebës*',
         credit: 'Claude Lorrain, 1648 · Galeria Kombëtare, Londër',
-        note: 'Çdo nisje fillon me një drejtim të qartë.',
       },
       facts: [
         { k: 'Tiranë, Shqipëri', v: 'Punojmë me klientë në të gjithë botën' },

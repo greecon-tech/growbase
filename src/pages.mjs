@@ -47,41 +47,31 @@ const sectionHead = (ctx, { id, eyebrow: eb, title, intro }, cls = '') => `
 export function home(ctx) {
   const c = ctx.t.home;
   const h = c.hero;
-  const heroSizes = '(min-width: 960px) 440px, 78vw';
+  const heroSizes = '100vw';
   const marqueeItems = c.marquee.map((x) => `<span class="marquee__item">${esc(x)}</span>`).join('').repeat(3);
   const svcAnchors = ctx.t.services.items.map((i) => i.id);
 
   const body = `
 <section class="hero s-dark" aria-labelledby="hero-title">
-  <div class="hero__glow" aria-hidden="true"></div>
-  <div class="wrap hero__grid">
-    <div class="hero__copy">
-      ${eyebrow(h.eyebrow, 'reveal')}
-      <h1 id="hero-title" class="display reveal d1">${md(h.title, ctx)}</h1>
-      <p class="lead reveal d2">${md(h.lead, ctx)}</p>
-      <div class="btn-row reveal d3">
-        ${btn(ctx, ctx.href('contact'), h.primary, 'primary')}
-        <a class="btn btn--ghost" href="#process">${esc(h.secondary)}</a>
-      </div>
+  <div class="hero__bg">
+    ${picture(ctx, { set: 'lorrain-wide', sizes: heroSizes, alt: h.art.alt, eager: true, cls: 'hero__img' })}
+  </div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="wrap hero__center">
+    ${eyebrow(h.eyebrow, 'reveal')}
+    <h1 id="hero-title" class="display reveal d1">${md(h.title, ctx)}</h1>
+    <p class="lead reveal d2">${md(h.lead, ctx)}</p>
+    <div class="btn-row reveal d3">
+      ${btn(ctx, ctx.href('contact'), h.primary, 'primary')}
+      <a class="btn btn--ghost" href="#process">${esc(h.secondary)}</a>
     </div>
-    <figure class="hero__art reveal d2">
-      <div class="arch-wrap" data-parallax>
-        <div class="arch arch--hero">
-          ${picture(ctx, { set: 'lorrain-arch', sizes: heroSizes, alt: h.art.alt, eager: true, cls: 'arch__img' })}
-        </div>
-      </div>
-      <figcaption class="plate">
-        <span class="plate__note">${esc(h.art.note)}</span>
-        <span class="plate__title">${md(h.art.caption, ctx)}</span>
-        <span class="plate__credit">${esc(h.art.credit)}</span>
-      </figcaption>
-    </figure>
   </div>
   <div class="wrap">
-    <ul class="facts">
-      ${h.facts.map((f, i) => `<li class="reveal d${i}"><strong>${esc(f.k)}</strong><span>${esc(f.v)}</span></li>`).join('')}
+    <ul class="facts reveal d3">
+      ${h.facts.map((f) => `<li><strong>${esc(f.k)}</strong><span>${esc(f.v)}</span></li>`).join('')}
     </ul>
   </div>
+  <p class="hero__credit"><span class="plate__title">${md(h.art.caption, ctx)}</span><span class="plate__credit">${esc(h.art.credit)}</span></p>
 </section>
 
 <div class="marquee" aria-hidden="true">
@@ -113,7 +103,7 @@ export function home(ctx) {
   </div>
 </section>
 
-<section id="services" class="section s-dark" aria-labelledby="services-title">
+<section id="services" class="section s-dark s-glow" aria-labelledby="services-title">
   <div class="wrap">
     ${sectionHead(ctx, { id: 'services-title', eyebrow: c.services.eyebrow, title: c.services.title, intro: c.services.intro })}
     <ol class="svc-list">
@@ -163,8 +153,10 @@ export function home(ctx) {
     <h2 id="phil-title" class="statements">
       ${c.philosophy.lines.map((l, i) => `<span class="statement reveal d${i}">${md(l, ctx)}</span>`).join('')}
     </h2>
-    <p class="lead reveal">${md(c.philosophy.intro, ctx)}</p>
-    <div class="btn-row reveal">${btn(ctx, ctx.href('about'), c.philosophy.link, 'ghost')}</div>
+    <div class="s-art__panel reveal">
+      <p class="lead">${md(c.philosophy.intro, ctx)}</p>
+      <div class="btn-row">${btn(ctx, ctx.href('about'), c.philosophy.link, 'ghost')}</div>
+    </div>
   </div>
   <p class="art-credit"><span class="art-credit__t">${md(c.philosophy.art.caption, ctx)}</span> ${esc(c.philosophy.art.credit)}</p>
   <span class="sr">${esc(c.philosophy.art.alt)}</span>
@@ -176,7 +168,7 @@ ${ctaBand(ctx, c.cta)}`;
     key: 'home',
     bodyClass: 'page-home',
     body,
-    preloads: [preloadArt(ctx, 'lorrain-arch', heroSizes)],
+    preloads: [preloadArt(ctx, 'lorrain-wide', heroSizes)],
   };
 }
 

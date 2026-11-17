@@ -77,11 +77,11 @@ function header(ctx, page) {
     return here
       ? `<span class="lang__item" aria-current="true" lang="${l}">${ctx.dict[l].short}</span>`
       : `<a class="lang__item" href="${ctx.alt(page, l)}" hreflang="${l}" lang="${l}" aria-label="${ctx.dict[l].short} — ${esc(t.ui.switchToLabel)}">${ctx.dict[l].short}</a>`;
-  }).join('<span class="lang__sep" aria-hidden="true"></span>');
+  }).join('');
   return `
 <a class="skip" href="#main">${esc(t.ui.skip)}</a>
 <header class="site-header" data-header>
-  <div class="wrap header__in">
+  <div class="header__in">
     <a class="brand" href="${ctx.href('home')}" aria-label="${esc(t.ui.homeLabel)}">
       ${logoSvg('brand__logo')}<span class="brand__name">Grow <b>Base</b></span>
     </a>

@@ -205,6 +205,8 @@ const PAIRS = [
   ['cream on bronze (success icon)', '#f2ede4', '#8a4f0a', 4.5],
   ['form error on cream', '#9b2c1a', '#f2ede4', 4.5],
   ['placeholder on field', '#6b6256', '#fffdf8', 4.5],
+  ['form field border on white (WCAG 1.4.11)', '#857d71', '#ffffff', 3],
+  ['form field border on form card (WCAG 1.4.11)', '#857d71', '#fbf9f4', 3],
   ['copper-deep numerals on parchment (large)', '#a85f15', '#e8dcc8', 3],
   ['copper-deep numerals on cream (large)', '#a85f15', '#f2ede4', 3],
   ['copper on charcoal (large/decorative only)', '#c97a2a', '#3a3530', 3],

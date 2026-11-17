@@ -6,12 +6,35 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   root.classList.add('ready');
 
-  /* ---- sticky header ---- */
+  /* ---- header: stuck state + adaptive tone (light glass while floating over light sections) ---- */
   const header = document.querySelector('[data-header]');
   if (header) {
-    const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const lights = [...document.querySelectorAll('main > .s-cream, main > .s-parch')];
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      header.classList.toggle('is-stuck', window.scrollY > 24);
+      const y = header.getBoundingClientRect().top + header.offsetHeight / 2;
+      const tone = lights.some((el) => {
+        const r = el.getBoundingClientRect();
+        return r.top <= y && r.bottom >= y;
+      })
+        ? 'light'
+        : 'dark';
+      if (header.dataset.tone !== tone) header.dataset.tone = tone;
+    };
+    update();
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+    window.addEventListener('resize', update);
   }
 
   /* ---- mobile menu ---- */
@@ -58,24 +81,19 @@
     reveals.forEach((el) => el.classList.add('is-in'));
   }
 
-  /* ---- gentle parallax on the hero painting (desktop, motion allowed) ---- */
-  const parallax = document.querySelector('[data-parallax]');
-  if (parallax && !reduce && window.matchMedia('(min-width: 961px)').matches) {
-    let ticking = false;
-    const update = () => {
-      parallax.style.transform = `translate3d(0, ${Math.min(window.scrollY, 800) * -0.06}px, 0)`;
-      ticking = false;
-    };
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(update);
-        }
-      },
-      { passive: true },
-    );
+  /* ---- glass highlight that follows the pointer (fine pointers only) ---- */
+  if (!reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.svc').forEach((el) => {
+      el.addEventListener(
+        'pointermove',
+        (e) => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', e.clientX - r.left + 'px');
+          el.style.setProperty('--my', e.clientY - r.top + 'px');
+        },
+        { passive: true },
+      );
+    });
   }
 
   /* ---- contact form: accessible validation + AJAX submit to Netlify Forms ---- */

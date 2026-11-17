@@ -89,7 +89,6 @@ export default {
         alt: 'Oil painting of a harbour with the sun low over calm water: a tall ship beside a stone tower, rowing boats loading cargo, a palace and ancient columns framing the scene.',
         caption: '*Seaport with the Embarkation of the Queen of Sheba*',
         credit: 'Claude Lorrain, 1648 · National Gallery, London',
-        note: 'Every launch begins with a clear heading.',
       },
       facts: [
         { k: 'Tirana, Albania', v: 'Working with clients globally' },
